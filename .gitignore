@@ -1,0 +1,15 @@
+# IDE settings
+.idea
+.vscode
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Files uploaded by users at runtime (used in later assignments)
+public/uploads/
+
+# Logs and temporary files
+*.log
+*.tmp

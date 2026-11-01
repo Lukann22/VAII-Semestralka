@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeaShop – Tea Catalog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== Header: logo, name, navigation ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-logo" aria-hidden="true"></span>
+                <span class="brand-name">TeaShop</span>
+            </a>
+
+            <!-- CSS-only mobile menu toggle (no JavaScript) -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </label>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html" class="active" aria-current="page">Catalog</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Cart (0)</a></li>
+                    <li><a href="#" class="nav-signin">Sign in</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Main: tea catalog ===== -->
+    <main class="container page">
+
+        <div class="catalog-header">
+            <h1>Tea Catalog</h1>
+            <form class="search-form" role="search" action="#">
+                <label for="search" class="visually-hidden">Search products</label>
+                <input type="search" id="search" name="q" placeholder="Search products...">
+            </form>
+        </div>
+
+        <div class="catalog-layout">
+
+            <!-- ----- Filters sidebar ----- -->
+            <aside class="filters" aria-label="Product filters">
+                <details open>
+                    <summary>Filters</summary>
+
+                    <form action="#" class="filters-form">
+                        <fieldset class="filter-group">
+                            <legend>Tea Type</legend>
+                            <div class="checkbox-list">
+                            <label class="checkbox"><input type="checkbox" name="type" value="green"> Green tea</label>
+                            <label class="checkbox"><input type="checkbox" name="type" value="black"> Black tea</label>
+                            <label class="checkbox"><input type="checkbox" name="type" value="herbal"> Herbal tea</label>
+                            <label class="checkbox"><input type="checkbox" name="type" value="white"> White tea</label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="filter-group">
+                            <legend>Price Range</legend>
+                            <div class="price-range">
+                                <label for="price-min" class="visually-hidden">Minimum price</label>
+                                <input type="number" id="price-min" name="min" min="0" placeholder="Min €">
+                                <label for="price-max" class="visually-hidden">Maximum price</label>
+                                <input type="number" id="price-max" name="max" min="0" placeholder="Max €">
+                            </div>
+                        </fieldset>
+
+                        <button type="submit" class="btn btn-primary btn-block">Apply Filters</button>
+                        <button type="reset" class="btn btn-ghost btn-block">Clear filters</button>
+                    </form>
+                </details>
+            </aside>
+
+            <!-- ----- Product list ----- -->
+            <section class="products" aria-labelledby="products-title">
+                <h2 id="products-title" class="visually-hidden">Products</h2>
+
+                <div class="products-toolbar">
+                    <p class="results-count">Showing <strong>6</strong> of 24 teas</p>
+                    <div class="sort">
+                        <label for="sort">Sort by</label>
+                        <select id="sort" name="sort">
+                            <option>Recommended</option>
+                            <option>Price: low to high</option>
+                            <option>Price: high to low</option>
+                            <option>Name A–Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <ul class="product-grid">
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">Black tea</span>
+                                <h3>Darjeeling First Flush</h3>
+                                <p>Delicate floral aroma with muscatel notes</p>
+                                <div class="product-footer">
+                                    <span class="price">14.90 €</span>
+                                    <button type="button" class="btn btn-primary">Add to cart 🛒</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">Green tea</span>
+                                <h3>Sencha Uji</h3>
+                                <p>Fresh, grassy taste with a sweet finish</p>
+                                <div class="product-footer">
+                                    <span class="price">12.50 €</span>
+                                    <button type="button" class="btn btn-primary">Add to cart 🛒</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">White tea</span>
+                                <h3>Bai Mu Dan</h3>
+                                <p>Light and honeyed with gentle fruity notes</p>
+                                <div class="product-footer">
+                                    <span class="price">16.40 €</span>
+                                    <button type="button" class="btn btn-primary">Add to cart 🛒</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">Herbal tea</span>
+                                <h3>Rooibos Vanilla</h3>
+                                <p>Caffeine-free, creamy and naturally sweet</p>
+                                <div class="product-footer">
+                                    <span class="price">8.90 €</span>
+                                    <button type="button" class="btn btn-primary">Add to cart 🛒</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">Green tea</span>
+                                <h3>Gyokuro Asahi</h3>
+                                <p>Shade-grown tea with a rich umami character</p>
+                                <div class="product-footer">
+                                    <span class="price">24.90 €</span>
+                                    <button type="button" class="btn btn-primary" disabled>Sold out</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="card product-card">
+                            <div class="placeholder product-image">[Product image]</div>
+                            <div class="product-body">
+                                <span class="tag">Black tea</span>
+                                <h3>Assam Breakfast</h3>
+                                <p>Malty and bold, perfect with a splash of milk</p>
+                                <div class="product-footer">
+                                    <span class="price">9.80 €</span>
+                                    <button type="button" class="btn btn-primary">Add to cart 🛒</button>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+
+                <nav class="pagination" aria-label="Pagination">
+                    <a href="#" class="page-link" aria-disabled="true">&laquo; Prev</a>
+                    <a href="#" class="page-link current" aria-current="page">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">4</a>
+                    <a href="#" class="page-link">Next &raquo;</a>
+                </nav>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 TeaShop | <a href="#">Contact</a> | <a href="#">Terms &amp; Conditions</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
