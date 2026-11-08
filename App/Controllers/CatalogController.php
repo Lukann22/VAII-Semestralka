@@ -2,23 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Models\Product;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
 use Framework\Http\Responses\Response;
 
 /**
  * Class CatalogController
- * Displays the tea catalog of the TeaShop application.
- *
- * For now the products are static sample data. Later they will be loaded from the database
- * using a model, the view will stay the same.
+ * Displays the tea catalog of the TeaShop application. Products are loaded from the database.
  *
  * @package App\Controllers
  */
 class CatalogController extends BaseController
 {
-    /** Number of pages shown in the pagination (static for now). */
-    private const PAGE_COUNT = 4;
+    /** Number of products on one page. */
+    private const PER_PAGE = 6;
 
     /**
      * The catalog is public - everybody can browse it.
@@ -33,73 +31,24 @@ class CatalogController extends BaseController
      */
     public function index(Request $request): Response
     {
+        $totalCount = Product::getCount();
+        $pageCount = max(1, (int)ceil($totalCount / self::PER_PAGE));
+
         $page = (int)$request->value('page');
-        $page = max(1, min(self::PAGE_COUNT, $page));
+        $page = max(1, min($pageCount, $page));
+
+        $products = Product::getAll(
+            orderBy: '`name` ASC',
+            limit: self::PER_PAGE,
+            offset: ($page - 1) * self::PER_PAGE
+        );
 
         return $this->html([
-            'teaTypes' => [
-                'green' => 'Green tea',
-                'black' => 'Black tea',
-                'herbal' => 'Herbal tea',
-                'white' => 'White tea',
-            ],
-            'products' => $this->getSampleProducts(),
-            'totalCount' => 24,
+            'teaTypes' => Product::TYPES,
+            'products' => $products,
+            'totalCount' => $totalCount,
             'currentPage' => $page,
-            'pageCount' => self::PAGE_COUNT,
+            'pageCount' => $pageCount,
         ]);
-    }
-
-    /**
-     * Static sample products - placeholder until the database and models are implemented.
-     *
-     * @return array<int, array{name: string, type: string, description: string, price: float, inStock: bool}>
-     */
-    private function getSampleProducts(): array
-    {
-        return [
-            [
-                'name' => 'Darjeeling First Flush',
-                'type' => 'Black tea',
-                'description' => 'Delicate floral aroma with muscatel notes',
-                'price' => 14.90,
-                'inStock' => true,
-            ],
-            [
-                'name' => 'Sencha Uji',
-                'type' => 'Green tea',
-                'description' => 'Fresh, grassy taste with a sweet finish',
-                'price' => 12.50,
-                'inStock' => true,
-            ],
-            [
-                'name' => 'Bai Mu Dan',
-                'type' => 'White tea',
-                'description' => 'Light and honeyed with gentle fruity notes',
-                'price' => 16.40,
-                'inStock' => true,
-            ],
-            [
-                'name' => 'Rooibos Vanilla',
-                'type' => 'Herbal tea',
-                'description' => 'Caffeine-free, creamy and naturally sweet',
-                'price' => 8.90,
-                'inStock' => true,
-            ],
-            [
-                'name' => 'Gyokuro Asahi',
-                'type' => 'Green tea',
-                'description' => 'Shade-grown tea with a rich umami character',
-                'price' => 24.90,
-                'inStock' => false,
-            ],
-            [
-                'name' => 'Assam Breakfast',
-                'type' => 'Black tea',
-                'description' => 'Malty and bold, perfect with a splash of milk',
-                'price' => 9.80,
-                'inStock' => true,
-            ],
-        ];
     }
 }

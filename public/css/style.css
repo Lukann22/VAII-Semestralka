@@ -729,3 +729,192 @@ main {
         aspect-ratio: 16 / 7;
     }
 }
+
+
+
+/* =========================================================
+   Product management (CRUD) – added in assignment 6
+   ========================================================= */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+}
+
+.btn-danger {
+    background: #b3261e;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #8c1d18;
+}
+
+.empty,
+.muted {
+    color: var(--color-muted);
+}
+
+.muted {
+    font-size: .875rem;
+}
+
+/* the table scrolls inside its own box on narrow screens, the page does not */
+.table-wrap {
+    position: relative;   /* keeps .visually-hidden texts inside the scroll box */
+    overflow-x: auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9375rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.data-table th {
+    white-space: nowrap;
+    background: var(--color-bg);
+    font-size: .8125rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--color-muted);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.data-table .num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.data-table .tag {
+    white-space: nowrap;
+}
+
+.actions {
+    white-space: nowrap;
+    text-align: right;
+}
+
+.actions form {
+    display: inline;
+}
+
+/* Form */
+.alert {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border: 1px solid #f0b4b0;
+    border-radius: var(--radius-sm);
+    background: #fdecea;
+    color: #8c1d18;
+}
+
+.form-card {
+    max-width: 560px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-row label {
+    font-weight: 600;
+    font-size: .9375rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+}
+
+.form-row textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+    /* --- Product management: table rows become cards --- */
+    .data-table thead {
+        display: none;
+    }
+
+    .data-table,
+    .data-table tbody,
+    .data-table td {
+        display: block;
+    }
+
+    .data-table tr {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .data-table tbody tr:last-child {
+        border-bottom: 0;
+    }
+
+    .data-table td {
+        padding: 0;
+        border: 0;
+    }
+
+    .data-table .col-id {
+        display: none;
+    }
+
+    .data-table .col-name,
+    .data-table .actions {
+        flex-basis: 100%;
+        text-align: left;
+    }
+
+    .data-table td[data-label]::before {
+        content: attr(data-label) ": ";
+        color: var(--color-muted);
+    }
+
+    .form-card {
+        padding: 18px;
+    }
+}

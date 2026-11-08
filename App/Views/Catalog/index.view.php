@@ -2,7 +2,7 @@
 
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var array<string, string> $teaTypes */
-/** @var array<int, array{name: string, type: string, description: string, price: float, inStock: bool}> $products */
+/** @var \App\Models\Product[] $products */
 /** @var int $totalCount */
 /** @var int $currentPage */
 /** @var int $pageCount */
@@ -77,12 +77,12 @@
                     <article class="card product-card">
                         <div class="placeholder product-image">[Product image]</div>
                         <div class="product-body">
-                            <span class="tag"><?= e($product['type']) ?></span>
-                            <h3><?= e($product['name']) ?></h3>
-                            <p><?= e($product['description']) ?></p>
+                            <span class="tag"><?= e($product->getTypeLabel()) ?></span>
+                            <h3><?= e($product->getName()) ?></h3>
+                            <p><?= e($product->getDescription()) ?></p>
                             <div class="product-footer">
-                                <span class="price"><?= number_format($product['price'], 2, '.', ' ') ?> €</span>
-                                <?php if ($product['inStock']) { ?>
+                                <span class="price"><?= number_format((float)$product->getPrice(), 2, '.', ' ') ?> €</span>
+                                <?php if ($product->isInStock()) { ?>
                                     <button type="button" class="btn btn-primary">Add to cart 🛒</button>
                                 <?php } else { ?>
                                     <button type="button" class="btn btn-primary" disabled>Sold out</button>

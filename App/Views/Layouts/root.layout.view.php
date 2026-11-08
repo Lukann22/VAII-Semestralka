@@ -22,6 +22,7 @@ $activeAttr = function (string $destination) use ($link, $currentUrl): string {
     <title><?= App\Configuration::APP_NAME ?></title>
     <link rel="icon" type="image/svg+xml" href="<?= $link->asset('images/logo.svg') ?>">
     <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
+    <script src="<?= $link->asset('js/script.js') ?>" defer></script>
 </head>
 <body>
 
@@ -43,8 +44,7 @@ $activeAttr = function (string $destination) use ($link, $currentUrl): string {
             <ul>
                 <li><a href="<?= $link->url('home.index') ?>"<?= $activeAttr('home.index') ?>>Home</a></li>
                 <li><a href="<?= $link->url('catalog.index') ?>"<?= $activeAttr('catalog.index') ?>>Catalog</a></li>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Cart (0)</a></li>
+                <li><a href="<?= $link->url('product.index') ?>"<?= $activeAttr('product.index') ?>>Manage Products</a></li>
                 <?php if ($user->isLoggedIn()) { ?>
                     <li><a href="<?= $link->url('auth.logout') ?>">Sign out (<?= e($user->getName()) ?>)</a></li>
                 <?php } else { ?>
