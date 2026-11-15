@@ -89,4 +89,24 @@ class Product extends Model
     {
         $this->inStock = $inStock ? 1 : 0;
     }
+
+        /**
+     * Categories this product belongs to, sorted by name.
+     * Works only for a product loaded from the DB (getOne / getAll).
+     *
+     * @return Category[]
+     */
+    public function getCategories(): array
+    {
+        $categories = [];
+        foreach ($this->getAllRelated(ProductCategory::class) as $link) {
+            $category = $link->getOneRelated(Category::class);
+            if ($category !== null) {
+                $categories[] = $category;
+            }
+        }
+        usort($categories, fn(Category $a, Category $b) => strcasecmp($a->getName(), $b->getName()));
+        return $categories;
+    }
 }
+

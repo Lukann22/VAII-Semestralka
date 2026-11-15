@@ -45,6 +45,7 @@ $activeAttr = function (string $destination) use ($link, $currentUrl): string {
                 <li><a href="<?= $link->url('home.index') ?>"<?= $activeAttr('home.index') ?>>Home</a></li>
                 <li><a href="<?= $link->url('catalog.index') ?>"<?= $activeAttr('catalog.index') ?>>Catalog</a></li>
                 <li><a href="<?= $link->url('product.index') ?>"<?= $activeAttr('product.index') ?>>Manage Products</a></li>
+                <li><a href="<?= $link->url('category.index') ?>"<?= $activeAttr('category.index') ?>>Categories</a></li>
                 <?php if ($user->isLoggedIn()) { ?>
                     <li><a href="<?= $link->url('auth.logout') ?>">Sign out (<?= e($user->getName()) ?>)</a></li>
                 <?php } else { ?>

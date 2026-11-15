@@ -19,6 +19,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
+                <th scope="col">Categories</th>
                 <th scope="col" class="num">Price</th>
                 <th scope="col">In stock</th>
                 <th scope="col"><span class="visually-hidden">Actions</span></th>
@@ -33,6 +34,18 @@
                         <div class="muted"><?= e($product->getDescription()) ?></div>
                     </td>
                     <td><span class="tag"><?= e($product->getTypeLabel()) ?></span></td>
+                    <td class="col-related">
+                        <?php $categories = $product->getCategories(); ?>
+                        <?php if (count($categories) === 0) { ?>
+                            <span class="muted">—</span>
+                        <?php } else { ?>
+                            <ul class="tag-list">
+                                <?php foreach ($categories as $category) { ?>
+                                    <li><span class="tag tag-neutral"><?= e($category->getName()) ?></span></li>
+                                <?php } ?>
+                            </ul>
+                        <?php } ?>
+                    </td>
                     <td class="num"><?= number_format((float)$product->getPrice(), 2, '.', ' ') ?> €</td>
                     <td data-label="In stock"><?= $product->isInStock() ? 'Yes' : 'No' ?></td>
                     <td class="actions">
